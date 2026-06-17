@@ -5,3 +5,12 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - run: echo "Hello World!!!"
+            - run: echo "Se anda probando Actions :3"
+            - run: echo "♞"
+            - name: Crea unos archivos
+              run: touch file1.txt
+            - name: Guarda el listado de archivos
+              run: ls -al > file2.txt
+            - run: echo "Agrego una linea a file2.txt" >> file2.txt
+            - run: cat file2.txt
+            - run: ls -al
