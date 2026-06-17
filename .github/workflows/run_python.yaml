@@ -10,5 +10,7 @@ jobs:
               uses: actions/checkout@v6   
             - name: Muestra archivos
               run: ls -al
-            - name: Ejecuta elscript
+            - name: Definir variable
+              run: echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
+            - name: Ejecuta el script
               run: python app.py
