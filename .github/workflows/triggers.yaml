@@ -16,9 +16,9 @@ on:
   issues:
     types: [opened, edited]
 
-  # trigger schedule corre a las 8;30
+  # trigger schedule corre a las 8;45
   schedule:
-    - cron: "30 20 * * *"
+    - cron: "45 20 * * *"
   # trigger worflow se activa manualmente  
   workflow_dispatch:
     inputs:
