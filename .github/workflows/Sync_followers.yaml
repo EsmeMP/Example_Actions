@@ -1,0 +1,30 @@
+name: Sync GitHub Followers
+
+on:
+  schedule:
+    # Todos los lunes a las 9:00 UTC (ajusta si quieres otro horario)
+    - cron: '0 9 * * 1'
+  workflow_dispatch: {}   # permite ejecutarlo manualmente desde la pestaña Actions
+
+jobs:
+  sync-followers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install requests
+
+      - name: Ejecutar sincronización
+        env:
+          GH_FOLLOW_TOKEN: ${{ secrets.GH_FOLLOW_TOKEN }}
+          GITHUB_USERNAME: ${{ secrets.GH_USERNAME }}
+          # Usuarios que quieres seguir SIEMPRE aunque no te sigan de vuelta
+          KEEP_FOLLOWING: "evelynsilverio, Kevin8548, gnievap, franlop24,"
+        run: python sync_followers.py

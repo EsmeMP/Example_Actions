@@ -1,0 +1,82 @@
+# ACTIVIDAD - DESACTIVADA
+# name: Triggers
+# run-name: Practicando github actions triggers
+
+# on:
+#   # trigger push, cuando se hace un push
+#   push:
+#     branches:
+#       - main
+#       - aprendiendo-github-actions
+
+#   # trigger pull, cuando se abre o s cierra un pull request
+#   pull_request:
+#     types: [opened, closed]
+
+#   # trigger issue, ocurre cuando se edita o crea un issue
+#   issues:
+#     types: [opened, edited]
+
+#   # trigger schedule corre a las 8;45
+#   schedule:
+#     - cron: "45 20 * * *"
+#   # trigger worflow se activa manualmente  
+#   workflow_dispatch:
+#     inputs:
+#       nombre:
+#         description: "Holi :3 "
+#         required: true
+#         default: "Memee"
+
+#       lenguaje:
+#         description: "JaibaScript"
+#         required: true
+#         default: "Python"
+
+# permissions:
+#   contents: write
+
+# jobs:
+#   logs-evento:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Clonar repo
+#         uses: actions/checkout@v4
+
+#       - name: Crear carpeta logs si no existe
+#         run: mkdir -p logs
+
+#       - name: Generar log del evento
+#         run: |
+#           echo "Evento: ${{ github.event_name }}" >> logs/evento.log
+#           echo "Fecha: $(date)" >> logs/evento.log
+#           echo "Repo: ${{ github.repository }}" >> logs/evento.log
+#           echo "Run: ${{ github.run_number }}" >> logs/evento.log
+#           echo "↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦↦" >> logs/evento.log
+
+#       - name: Guardar mas detalle segun trigger
+#         run: |
+#           if [ "${{ github.event_name }}" = "push" ]; then
+#             echo "TIPO: PUSH ♞" >> logs/evento.log
+#           fi
+
+#           if [ "${{ github.event_name }}" = "pull_request" ]; then
+#             echo "TIPO: PULL REQUEST ♜" >> logs/evento.log
+#           fi
+
+#           if [ "${{ github.event_name }}" = "issues" ]; then
+#             echo "TIPO: ISSUE ♛" >> logs/evento.log
+#           fi
+
+#       - name: Mostrar log generado
+#         run: cat logs/evento.log
+
+#       - name: Subir cambios al repo
+#         run: |
+#           git config user.name "github-actions"
+#           git config user.email "github-actions@github.com"
+
+#           git add logs/evento.log
+#           git commit -m "Log de evento ${{ github.event_name }}" || echo "sin cambios :)"
+#           git push
